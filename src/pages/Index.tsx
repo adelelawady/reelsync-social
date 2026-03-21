@@ -5,7 +5,7 @@ import { SetupSteps } from "@/components/SetupSteps";
 import { FeatureTabs } from "@/components/FeatureTabs";
 import { ExternalLink } from "lucide-react";
 
-const EXPO_URL = `${window.location.origin}/app`;
+const EXPO_URL = `exp://${window.location.host}/app`;
 
 const Index = () => {
   return (
