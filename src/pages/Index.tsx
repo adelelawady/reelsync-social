@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
-import { QRCodeSVG } from "qrcode.react";
+import { FeatureTabs } from "@/components/FeatureTabs";
 import { PhoneMockup } from "@/components/PhoneMockup";
 import { SetupSteps } from "@/components/SetupSteps";
-import { FeatureTabs } from "@/components/FeatureTabs";
+import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 
-const EXPO_URL = `exp://${window.location.host}/app`;
+const EXPO_URL = `exp://u.expo.dev/be5b5a31-e1b9-4b59-aa86-4576088f0302/group/84467230-ef6d-46f7-8126-368fc0951f73`;
 
 const Index = () => {
   return (
