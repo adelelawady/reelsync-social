@@ -1,6 +1,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Users, Tv, MessageCircle, Zap, Gamepad2, ArrowLeft, Keyboard } from "lucide-react";
+import reelBg1 from "@/assets/reel-bg-1.jpg";
+import reelBg2 from "@/assets/reel-bg-2.jpg";
+import reelBg3 from "@/assets/reel-bg-3.jpg";
+
+const ReelBackground = ({ src, overlay = "from-black/50 via-black/20 to-black/60" }: { src: string; overlay?: string }) => (
+  <>
+    <img src={src} alt="" className="absolute inset-0 w-full h-full object-cover z-0" />
+    <div className={`absolute inset-0 bg-gradient-to-b ${overlay} z-[1]`} />
+  </>
+);
 
 const features = [
   {
@@ -10,13 +20,14 @@ const features = [
     title: "Sync Reels with Friends",
     description: "Create a room, invite your friends, and scroll through reels together in real-time. Everyone sees the same reel at the same time.",
     mockup: (
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full relative">
+        <ReelBackground src={reelBg2} />
         {/* Top bar */}
-        <div className="flex items-center justify-between px-3 pt-6 pb-2">
+        <div className="relative z-10 flex items-center justify-between px-3 pt-6 pb-2">
           <div className="flex items-center gap-2">
-            <ArrowLeft className="w-3.5 h-3.5 text-foreground/70" />
+            <ArrowLeft className="w-3.5 h-3.5 text-white/80" />
             <div className="relative">
-              <Users className="w-4 h-4 text-foreground/80" />
+              <Users className="w-4 h-4 text-white/90" />
               <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-primary text-[5px] text-primary-foreground flex items-center justify-center font-bold">3</div>
             </div>
             <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
@@ -28,30 +39,24 @@ const features = [
           </div>
         </div>
         {/* Room panel */}
-        <div className="mx-3 bg-card/80 backdrop-blur-md border border-border/40 rounded-lg p-2">
+        <div className="relative z-10 mx-3 bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-2">
           <div className="flex items-center gap-1 mb-1">
-            <span className="text-[9px] font-bold">movie-night</span>
+            <span className="text-[9px] font-bold text-white">movie-night</span>
             <span className="bg-blue-500/70 text-[5px] text-white px-1 rounded">🎮 Remote</span>
           </div>
           {["Alice (you)", "Bob", "Charlie"].map((name, i) => (
             <div key={name} className="flex items-center justify-between py-0.5">
               <div className="flex items-center gap-1">
-                <span className="text-[8px] text-foreground/80">{name}</span>
+                <span className="text-[8px] text-white/80">{name}</span>
                 {i === 0 && <span className="bg-green-600/80 text-[5px] text-white px-1 rounded">owner</span>}
               </div>
-              {i === 0 && <Gamepad2 className="w-2.5 h-2.5 text-muted-foreground" />}
+              {i === 0 && <Gamepad2 className="w-2.5 h-2.5 text-white/50" />}
               {i > 0 && <span className="bg-blue-500/70 text-[5px] text-white px-1.5 rounded">Give 🎮</span>}
             </div>
           ))}
         </div>
-        {/* Video area placeholder */}
-        <div className="flex-1 mx-3 mt-2 rounded-lg bg-gradient-to-br from-muted/40 to-muted/20 relative overflow-hidden">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center">
-              <div className="w-0 h-0 border-l-[8px] border-l-foreground/30 border-y-[5px] border-y-transparent ml-1" />
-            </div>
-          </div>
-        </div>
+        {/* Video area — the bg image shows through */}
+        <div className="flex-1 relative z-10" />
       </div>
     ),
   },
@@ -62,43 +67,46 @@ const features = [
     title: "One Person Drives",
     description: "Enable remote control mode so one person picks the reels. Pass the remote to anyone in the room whenever you want.",
     mockup: (
-      <div className="flex flex-col h-full pt-6 px-3">
-        <div className="bg-card/80 border border-border/40 rounded-lg p-3 mb-3">
-          <div className="flex items-center gap-1.5 mb-2">
-            <span className="text-[9px] font-bold">room</span>
-            <span className="bg-blue-500/70 text-[5px] text-white px-1 rounded flex items-center gap-0.5">
-              <Gamepad2 className="w-2 h-2" /> Remote
-            </span>
+      <div className="flex flex-col h-full relative">
+        <ReelBackground src={reelBg3} />
+        <div className="relative z-10 flex flex-col h-full pt-6 px-3">
+          <div className="bg-black/50 backdrop-blur-md border border-white/10 rounded-lg p-3 mb-3">
+            <div className="flex items-center gap-1.5 mb-2">
+              <span className="text-[9px] font-bold text-white">room</span>
+              <span className="bg-blue-500/70 text-[5px] text-white px-1 rounded flex items-center gap-0.5">
+                <Gamepad2 className="w-2 h-2" /> Remote
+              </span>
+            </div>
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-1">
+                  <span className="text-[8px] font-medium text-white">Alice</span>
+                  <span className="text-[7px] text-white/50">(you)</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <span className="bg-green-600/80 text-[5px] text-white px-1 rounded">owner</span>
+                  <Gamepad2 className="w-3 h-3 text-primary" />
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[8px] text-white/70">Bob</span>
+                <div className="bg-blue-500 text-[6px] text-white px-2 py-0.5 rounded flex items-center gap-0.5">
+                  Give <Gamepad2 className="w-2 h-2" />
+                </div>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[8px] text-white/70">Charlie</span>
+                <div className="bg-blue-500 text-[6px] text-white px-2 py-0.5 rounded flex items-center gap-0.5">
+                  Give <Gamepad2 className="w-2 h-2" />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="space-y-1.5">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-1">
-                <span className="text-[8px] font-medium">Alice</span>
-                <span className="text-[7px] text-muted-foreground">(you)</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <span className="bg-green-600/80 text-[5px] text-white px-1 rounded">owner</span>
-                <Gamepad2 className="w-3 h-3 text-primary" />
-              </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-[8px] text-foreground/70">Bob</span>
-              <div className="bg-blue-500 text-[6px] text-white px-2 py-0.5 rounded flex items-center gap-0.5">
-                Give <Gamepad2 className="w-2 h-2" />
-              </div>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-[8px] text-foreground/70">Charlie</span>
-              <div className="bg-blue-500 text-[6px] text-white px-2 py-0.5 rounded flex items-center gap-0.5">
-                Give <Gamepad2 className="w-2 h-2" />
-              </div>
-            </div>
+          <div className="bg-primary/20 backdrop-blur-md border border-primary/30 rounded-lg p-2.5 text-center">
+            <Gamepad2 className="w-6 h-6 mx-auto mb-1 text-primary" />
+            <div className="text-[9px] font-medium text-white">You hold the remote</div>
+            <div className="text-[7px] text-white/50 mt-0.5">Only you can change reels</div>
           </div>
-        </div>
-        <div className="bg-primary/10 border border-primary/20 rounded-lg p-2.5 text-center">
-          <Gamepad2 className="w-6 h-6 mx-auto mb-1 text-primary" />
-          <div className="text-[9px] font-medium text-foreground">You hold the remote</div>
-          <div className="text-[7px] text-muted-foreground mt-0.5">Only you can change reels</div>
         </div>
       </div>
     ),
@@ -111,42 +119,61 @@ const features = [
     description: "Drop comments and reactions while you watch. See what your friends think about each reel instantly.",
     mockup: (
       <div className="flex flex-col h-full relative">
-        {/* Fake video bg */}
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-card/50 to-card/30 z-0" />
-        <div className="flex-1 relative z-10 px-3 pt-8">
-          {/* Floating comment bubbles like real app */}
-          <div className="space-y-3 mt-6">
-            <div className="flex justify-start">
-              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl px-2 py-1 max-w-[100px]">
-                <div className="text-[6px] font-bold text-white uppercase">BOB</div>
-                <div className="text-[8px] text-white">lol this is so good 😂</div>
+        <ReelBackground src={reelBg1} />
+
+        {/* Top bar */}
+        <div className="relative z-10 flex items-center justify-between px-3 pt-6 pb-1">
+          <div className="flex items-center gap-1.5">
+            <ArrowLeft className="w-3 h-3 text-white/70" />
+            <div className="relative">
+              <Users className="w-3.5 h-3.5 text-white/80" />
+              <div className="absolute -top-1 -right-1.5 w-2.5 h-2.5 rounded-full bg-primary text-[5px] text-primary-foreground flex items-center justify-center font-bold">4</div>
+            </div>
+          </div>
+          <Keyboard className="w-3.5 h-3.5 text-white/40" />
+        </div>
+
+        {/* Chat messages floating over video */}
+        <div className="flex-1 relative z-10 px-3 flex flex-col justify-end pb-1">
+          <div className="space-y-2">
+            <div className="flex items-end gap-1">
+              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl rounded-bl-md px-2 py-1 max-w-[120px]">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">BOB</div>
+                <div className="text-[8px] text-white leading-tight">this one is hilarious 😂</div>
               </div>
             </div>
             <div className="flex justify-end">
-              <div className="bg-blue-500 rounded-2xl px-2.5 py-1">
-                <div className="text-[6px] font-bold text-white uppercase">YOU</div>
-                <div className="text-[8px] text-white">wait for it!!</div>
+              <div className="bg-blue-500 rounded-2xl rounded-br-md px-2 py-1 max-w-[100px]">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">YOU</div>
+                <div className="text-[8px] text-white leading-tight">wait for it!! 👀</div>
               </div>
             </div>
-            <div className="flex justify-start">
-              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl px-2 py-1 max-w-[100px]">
-                <div className="text-[6px] font-bold text-white uppercase">ALICE</div>
-                <div className="text-[8px] text-white">I'm crying 💀</div>
+            <div className="flex items-end gap-1">
+              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl rounded-bl-md px-2 py-1 max-w-[120px]">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">ALICE</div>
+                <div className="text-[8px] text-white leading-tight">I'm crying 💀💀</div>
+              </div>
+            </div>
+            <div className="flex items-end gap-1">
+              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl rounded-bl-md px-2 py-1 max-w-[120px]">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">CHARLIE</div>
+                <div className="text-[8px] text-white leading-tight">send another one 🔥</div>
               </div>
             </div>
             <div className="flex justify-end">
-              <div className="bg-blue-500 rounded-2xl px-2.5 py-1">
-                <div className="text-[6px] font-bold text-white uppercase">YOU</div>
-                <div className="text-[8px] text-white">🔥🔥🔥</div>
+              <div className="bg-blue-500 rounded-2xl rounded-br-md px-2 py-1">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">YOU</div>
+                <div className="text-[8px] text-white leading-tight">🔥🔥🔥</div>
               </div>
             </div>
           </div>
         </div>
-        {/* Input */}
+
+        {/* Input bar */}
         <div className="relative z-10 px-3 pb-4 pt-2">
-          <div className="bg-card/60 border border-border/40 rounded-lg px-2.5 py-1.5 flex items-center gap-2">
-            <span className="text-[8px] text-muted-foreground flex-1">Say something...</span>
-            <span className="bg-blue-500 text-[7px] text-white px-2 py-0.5 rounded font-medium">Send</span>
+          <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl px-2.5 py-1.5 flex items-center gap-2">
+            <span className="text-[8px] text-white/50 flex-1">Say something...</span>
+            <span className="bg-blue-500 text-[7px] text-white px-2 py-0.5 rounded-lg font-medium">Send</span>
           </div>
         </div>
       </div>
@@ -159,7 +186,7 @@ const features = [
     title: "Ready in Seconds",
     description: "No accounts needed. Just pick a name, create or join a room, and start watching. It's that simple.",
     mockup: (
-      <div className="flex flex-col h-full pt-8 px-3">
+      <div className="flex flex-col h-full pt-8 px-3 bg-gradient-to-b from-card via-card/90 to-card">
         {/* Logo area */}
         <div className="text-center mb-4">
           <div className="text-2xl mb-1">🎬</div>

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Gamepad2, Keyboard, Users } from "lucide-react";
+import reelBg1 from "@/assets/reel-bg-1.jpg";
 
 export function PhoneMockup() {
   return (
@@ -12,14 +13,16 @@ export function PhoneMockup() {
       {/* Notch */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-background rounded-b-2xl z-10" />
 
-      {/* Screen content — mimics the room/watching view */}
-      <div className="h-full flex flex-col bg-gradient-to-b from-card via-card/80 to-card relative overflow-hidden">
-        {/* Fake video background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-muted/60 via-card to-muted/40 z-0" />
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-[30%] left-[25%] w-[55%] h-[35%] rounded-2xl bg-gradient-to-br from-muted-foreground/10 to-muted/20 blur-sm" />
-          <div className="absolute top-[35%] left-[30%] w-[45%] h-[25%] rounded-xl bg-muted-foreground/8" />
-        </div>
+      {/* Screen content */}
+      <div className="h-full flex flex-col relative overflow-hidden">
+        {/* Reel video background */}
+        <img
+          src={reelBg1}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/60 z-[1]" />
 
         {/* Top bar */}
         <motion.div
@@ -29,9 +32,9 @@ export function PhoneMockup() {
           transition={{ delay: 0.5 }}
         >
           <div className="flex items-center gap-2">
-            <ArrowLeft className="w-4 h-4 text-foreground/70" />
+            <ArrowLeft className="w-4 h-4 text-white/80" />
             <div className="relative">
-              <Users className="w-5 h-5 text-foreground/80" />
+              <Users className="w-5 h-5 text-white/90" />
               <div className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-primary text-[6px] text-primary-foreground flex items-center justify-center font-bold">2</div>
             </div>
             <div className="w-2 h-2 rounded-full bg-green-400" />
@@ -41,7 +44,7 @@ export function PhoneMockup() {
               <Gamepad2 className="w-3 h-3" />
               Remote
             </div>
-            <Keyboard className="w-4 h-4 text-foreground/50" />
+            <Keyboard className="w-4 h-4 text-white/50" />
           </div>
         </motion.div>
 
@@ -52,9 +55,9 @@ export function PhoneMockup() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
         >
-          <div className="bg-card/80 backdrop-blur-md border border-border/40 rounded-xl p-2.5">
+          <div className="bg-black/50 backdrop-blur-md border border-white/10 rounded-xl p-2.5">
             <div className="flex items-center gap-1.5 mb-1.5">
-              <span className="text-[10px] font-bold text-foreground">room</span>
+              <span className="text-[10px] font-bold text-white">room</span>
               <div className="bg-blue-500/80 text-[6px] text-white px-1.5 py-0.5 rounded flex items-center gap-0.5">
                 <Gamepad2 className="w-2 h-2" />
                 Remote
@@ -62,15 +65,15 @@ export function PhoneMockup() {
             </div>
             <div className="space-y-1">
               <div className="flex items-center gap-1.5">
-                <span className="text-[9px] text-foreground/80 font-medium">aswadvibe</span>
-                <span className="text-[8px] text-muted-foreground">(you)</span>
+                <span className="text-[9px] text-white/90 font-medium">aswadvibe</span>
+                <span className="text-[8px] text-white/50">(you)</span>
               </div>
               <div className="flex items-center gap-1">
                 <span className="bg-green-600/80 text-[6px] text-white px-1.5 py-0.5 rounded">owner</span>
-                <Gamepad2 className="w-2.5 h-2.5 text-muted-foreground" />
+                <Gamepad2 className="w-2.5 h-2.5 text-white/50" />
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-[9px] text-foreground/70">aswadvibeijh</span>
+                <span className="text-[9px] text-white/70">aswadvibeijh</span>
                 <div className="bg-blue-500/80 text-[6px] text-white px-2 py-0.5 rounded flex items-center gap-0.5">
                   Give <Gamepad2 className="w-2 h-2" />
                 </div>
@@ -79,9 +82,8 @@ export function PhoneMockup() {
           </div>
         </motion.div>
 
-        {/* Floating comments over "video" */}
+        {/* Floating comments over video */}
         <div className="flex-1 relative z-10 px-3">
-          {/* Left-side comment bubbles */}
           <motion.div
             className="absolute left-2 top-[30%]"
             initial={{ opacity: 0, x: -20 }}
@@ -106,7 +108,6 @@ export function PhoneMockup() {
             </div>
           </motion.div>
 
-          {/* Right-side "you" bubbles */}
           <motion.div
             className="absolute right-2 top-[22%]"
             initial={{ opacity: 0, x: 20 }}
@@ -139,8 +140,8 @@ export function PhoneMockup() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.4 }}
         >
-          <div className="bg-card/60 backdrop-blur-md border border-border/40 rounded-xl px-3 py-2 flex items-center gap-2">
-            <div className="flex-1 text-[10px] text-muted-foreground">Say something...</div>
+          <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-xl px-3 py-2 flex items-center gap-2">
+            <div className="flex-1 text-[10px] text-white/50">Say something...</div>
             <div className="bg-blue-500 text-white text-[8px] font-semibold px-2.5 py-1 rounded-lg">Send</div>
           </div>
         </motion.div>
