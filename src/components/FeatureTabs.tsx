@@ -111,42 +111,70 @@ const features = [
     description: "Drop comments and reactions while you watch. See what your friends think about each reel instantly.",
     mockup: (
       <div className="flex flex-col h-full relative">
-        {/* Fake video bg */}
-        <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-card/50 to-card/30 z-0" />
-        <div className="flex-1 relative z-10 px-3 pt-8">
-          {/* Floating comment bubbles like real app */}
-          <div className="space-y-3 mt-6">
-            <div className="flex justify-start">
-              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl px-2 py-1 max-w-[100px]">
-                <div className="text-[6px] font-bold text-white uppercase">BOB</div>
-                <div className="text-[8px] text-white">lol this is so good 😂</div>
+        {/* Fake video bg with gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background/60 to-background/90 z-0" />
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-[15%] left-[20%] w-[60%] h-[40%] rounded-2xl bg-gradient-to-br from-muted-foreground/8 to-muted/15 blur-sm" />
+        </div>
+
+        {/* Top bar */}
+        <div className="relative z-10 flex items-center justify-between px-3 pt-6 pb-1">
+          <div className="flex items-center gap-1.5">
+            <ArrowLeft className="w-3 h-3 text-foreground/60" />
+            <div className="relative">
+              <Users className="w-3.5 h-3.5 text-foreground/70" />
+              <div className="absolute -top-1 -right-1.5 w-2.5 h-2.5 rounded-full bg-primary text-[5px] text-primary-foreground flex items-center justify-center font-bold">4</div>
+            </div>
+          </div>
+          <Keyboard className="w-3.5 h-3.5 text-foreground/40" />
+        </div>
+
+        {/* Chat messages floating over video */}
+        <div className="flex-1 relative z-10 px-3 flex flex-col justify-end pb-1">
+          <div className="space-y-2">
+            {/* Other user message */}
+            <div className="flex items-end gap-1">
+              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl rounded-bl-md px-2 py-1 max-w-[120px]">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">BOB</div>
+                <div className="text-[8px] text-white leading-tight">this one is hilarious 😂</div>
               </div>
             </div>
+            {/* You message */}
             <div className="flex justify-end">
-              <div className="bg-blue-500 rounded-2xl px-2.5 py-1">
-                <div className="text-[6px] font-bold text-white uppercase">YOU</div>
-                <div className="text-[8px] text-white">wait for it!!</div>
+              <div className="bg-blue-500 rounded-2xl rounded-br-md px-2 py-1 max-w-[100px]">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">YOU</div>
+                <div className="text-[8px] text-white leading-tight">wait for it!! 👀</div>
               </div>
             </div>
-            <div className="flex justify-start">
-              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl px-2 py-1 max-w-[100px]">
-                <div className="text-[6px] font-bold text-white uppercase">ALICE</div>
-                <div className="text-[8px] text-white">I'm crying 💀</div>
+            {/* Other user */}
+            <div className="flex items-end gap-1">
+              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl rounded-bl-md px-2 py-1 max-w-[120px]">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">ALICE</div>
+                <div className="text-[8px] text-white leading-tight">I'm crying 💀💀</div>
               </div>
             </div>
+            {/* Other user */}
+            <div className="flex items-end gap-1">
+              <div className="bg-gradient-to-r from-pink-500/90 to-orange-400/90 rounded-2xl rounded-bl-md px-2 py-1 max-w-[120px]">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">CHARLIE</div>
+                <div className="text-[8px] text-white leading-tight">send another one 🔥</div>
+              </div>
+            </div>
+            {/* You message */}
             <div className="flex justify-end">
-              <div className="bg-blue-500 rounded-2xl px-2.5 py-1">
-                <div className="text-[6px] font-bold text-white uppercase">YOU</div>
-                <div className="text-[8px] text-white">🔥🔥🔥</div>
+              <div className="bg-blue-500 rounded-2xl rounded-br-md px-2 py-1">
+                <div className="text-[5px] font-bold text-white/80 uppercase tracking-wider">YOU</div>
+                <div className="text-[8px] text-white leading-tight">🔥🔥🔥</div>
               </div>
             </div>
           </div>
         </div>
-        {/* Input */}
+
+        {/* Input bar */}
         <div className="relative z-10 px-3 pb-4 pt-2">
-          <div className="bg-card/60 border border-border/40 rounded-lg px-2.5 py-1.5 flex items-center gap-2">
+          <div className="bg-card/60 backdrop-blur-md border border-border/40 rounded-xl px-2.5 py-1.5 flex items-center gap-2">
             <span className="text-[8px] text-muted-foreground flex-1">Say something...</span>
-            <span className="bg-blue-500 text-[7px] text-white px-2 py-0.5 rounded font-medium">Send</span>
+            <span className="bg-blue-500 text-[7px] text-white px-2 py-0.5 rounded-lg font-medium">Send</span>
           </div>
         </div>
       </div>
